@@ -1,5 +1,22 @@
-name: Output_Information
-on: workflow_dispatch
+name: Events demo
+on: 
+  workflow_dispatch:
+  pull_request:
+    types:
+      - opened
+    branches:
+      - main  # Takes only main branch
+      - 'dev-*'   # dev-new dev-this-is-new
+      - 'feat/**' # feat/new feat/new/button
+      # developer-1 won't be picked from above conditions
+  push:
+    branches:
+      - main  # Takes only main branch
+      - 'dev-*'   # dev-new dev-this-is-new
+      - 'feat/**' # feat/new feat/new/button
+      # developer-1 won't be picked from above conditions
+    paths-ignore:
+      - '.github/workflows/*'
 jobs: 
   Info:
     runs-on: ubuntu-latest
